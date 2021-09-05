@@ -5,12 +5,12 @@
     <title>Read existing Events</title>
 
     <style>
-        <%@include file="Desktop/Ucode/Conference/finalConf/src/main/webapp/WEB-INF/styles/main.css"%>
+        <%@include file="../styles/main.css"%>
     </style>
 
 </head>
 <body>
-    <%@include file="Desktop/Ucode/Conference/finalConf/src/main/webapp/WEB-INF/view/header.html"%>
+    <%@include file="header.html"%>
 
     <h2>Read existing Events</h2>
 

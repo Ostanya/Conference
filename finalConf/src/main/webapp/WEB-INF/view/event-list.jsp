@@ -1,23 +1,17 @@
 <%@ page import="com.epam.rd.java.finalconf.entity.Event" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: tatanaostapenko
-  Date: 05.09.2021
-  Time: 19:08
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>List of Events</title>
 
     <style>
-        <%@include file="Desktop/Ucode/Conference/finalConf/src/main/webapp/WEB-INF/styles/main.css"%>
+        <%@include file="../styles/main.css"%>
     </style>
 </head>
 <body>
 
-    <%@include file="Desktop/Ucode/Conference/finalConf/src/main/webapp/WEB-INF/view/header.html"%>
+    <%@include file="header.html"%>
 
     <h2>List of Events</h2>
     <table border="1">
