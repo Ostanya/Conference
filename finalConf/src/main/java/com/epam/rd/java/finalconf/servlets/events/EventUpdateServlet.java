@@ -43,7 +43,7 @@ public class EventUpdateServlet extends HttpServlet {
         } else {
             request.setAttribute("error", "Event with a given name already exists!");
             request.setAttribute("event", event);
-            request.getRequestDispatcher("/WEB-INF/pages/edit-event.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/view/edit-event.jsp").forward(request, response);
         }
     }
 }
