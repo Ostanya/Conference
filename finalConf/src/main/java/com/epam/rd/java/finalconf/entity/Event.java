@@ -5,23 +5,23 @@ public class Event {
     private String eventName;
     private String topic;
     private User user;
+
+    private static int counter = 1;
   //  private Date date;
 
-    public Event() {}
-    public Event(int id, String eventName, String topic, User user) {
-        this.id = id;
+    public Event() {
+        id = counter++;
+    }
+    public Event(String eventName, String topic) {
+        id = counter++;
         this.eventName = eventName;
         this.topic = topic;
-        this.user = user;
+       // this.user = user;
     }
 
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getEventName() {
@@ -40,13 +40,13 @@ public class Event {
         this.topic = topic;
     }
 
-    public User getUser() {
-        return user;
-    }
+   // public User getUser() {
+//        return user;
+//    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     @Override
     public String toString() {
