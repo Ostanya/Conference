@@ -1,4 +1,4 @@
-package com.epam.rd.java.finalconf.servlets;
+package com.epam.rd.java.finalconf.servlets.events;
 
 import com.epam.rd.java.finalconf.entity.repository.EventRepository;
 

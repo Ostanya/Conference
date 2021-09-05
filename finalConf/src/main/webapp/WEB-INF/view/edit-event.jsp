@@ -5,11 +5,11 @@
     <title>Edit event</title>
 
     <style>
-        <%@include file="../styles/main.css"%>
+        <%@include file="Desktop/Ucode/Conference/finalConf/src/main/webapp/WEB-INF/styles/main.css"%>
     </style>
 </head>
 <body>
-    <%@include file="header.html"%>
+    <%@include file="Desktop/Ucode/Conference/finalConf/src/main/webapp/WEB-INF/view/header.html"%>
         <h2>Edit existing event</h2>
     <% Event event = (Event) request.getAttribute("event");
     String message = (String) request.getAttribute("error");

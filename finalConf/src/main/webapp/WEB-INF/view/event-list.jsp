@@ -12,12 +12,12 @@
     <title>List of Events</title>
 
     <style>
-        <%@include file="../styles/main.css"%>
+        <%@include file="Desktop/Ucode/Conference/finalConf/src/main/webapp/WEB-INF/styles/main.css"%>
     </style>
 </head>
 <body>
 
-    <%@include file="header.html"%>
+    <%@include file="Desktop/Ucode/Conference/finalConf/src/main/webapp/WEB-INF/view/header.html"%>
 
     <h2>List of Events</h2>
     <table border="1">
@@ -36,10 +36,10 @@
             <th colspan="3">Operations</th>
 
             <td>
-                <a href="/read-task?id=<%=e.getId()%>">Read</a>
+                <a href="/read-event?id=<%=e.getId()%>">Read</a>
             </td>
             <td>
-                <a href="/edit-task?id=<%=e.getId()%>">Edit</a>
+                <a href="/edit-event?id=<%=e.getId()%>">Edit</a>
             </td>
             <td>
                 <a href="/delete-task?id=<%=e.getId()%>">Delete</a>

@@ -1,0 +1,29 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Create new Event</title>
+
+    <style>
+        <%@include file="Desktop/Ucode/Conference/finalConf/src/main/webapp/WEB-INF/styles/main.css"%>
+    </style>
+</head>
+<body>
+    <%@include file="Desktop/Ucode/Conference/finalConf/src/main/webapp/WEB-INF/view/header.html"%>
+    <h2>Create new Event</h2>
+<form action="" method="post">
+    <div class="field">
+        <label>Name :</label>
+        <input type="text" id="nname" name="nname" />
+    </div>
+    <div class="field">
+        <label>Topic :</label>
+        <input type="text" id="tname" name="tname" />
+    </div>
+    <div class="field">
+        <label></label>
+        <input type="submit" value="Create">
+        <input type="reset" value="Clear">
+    </div>
+</form>
+</body>
+</html>
