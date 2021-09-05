@@ -13,14 +13,14 @@
 <form action="" method="post">
     <div class="field">
         <label>Name :</label>
-        <input type="text" id="nname" name="nname" />
+        <input type="text" id="nname" name="nname" minlength="2"/>
     </div>
     <div class="field">
         <label>Topic :</label>
-        <input type="text" id="tname" name="tname" />
+        <input type="text" id="tname" name="tname" minlength="2"/>
     </div>
     <div class="field">
-        <label></label>
+
         <input type="submit" value="Create">
         <input type="reset" value="Clear">
     </div>

@@ -18,6 +18,7 @@
         <th> Id </th>
         <th> Topic </th>
         <th> Title </th>
+        <th colspan="3">Operations</th>
     </tr>
 
     <%
@@ -27,7 +28,7 @@
             <td><%=e.getId()%></td>
             <td><%=e.getTopic()%></td>
             <td><%=e.getEventName()%></td>
-            <th colspan="3">Operations</th>
+
 
             <td>
                 <a href="/read-event?id=<%=e.getId()%>">Read</a>
@@ -36,7 +37,7 @@
                 <a href="/edit-event?id=<%=e.getId()%>">Edit</a>
             </td>
             <td>
-                <a href="/delete-task?id=<%=e.getId()%>">Delete</a>
+                <a href="/delete-event?id=<%=e.getId()%>">Delete</a>
             </td>
         </tr>
 <%
