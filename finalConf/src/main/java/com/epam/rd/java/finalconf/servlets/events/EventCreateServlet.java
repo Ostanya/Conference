@@ -11,6 +11,7 @@ import java.io.IOException;
 @WebServlet("/create-event")
 public class EventCreateServlet extends HttpServlet {
     EventRepository eventRepository;
+    private Event event;
 
     @Override
     public void init() {
@@ -26,7 +27,18 @@ public class EventCreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nName = request.getParameter("nname");
         String tName = request.getParameter("tname");
-        eventRepository.create(new Event(nName, tName));
-        doGet(request, response);
+        boolean eventStatus = eventRepository.create(new Event(nName, tName));
+
+        if(nName.isEmpty() && tName.isEmpty()) {
+            request.getRequestDispatcher("/WEB-INF/view/error.jsp").forward(request, response);
+        }
+
+        if (eventStatus) {
+            response.sendRedirect("/event-list");
+        } else {
+            request.setAttribute("error", "Event with a given name already exists!");
+            request.setAttribute("event", event);
+            request.getRequestDispatcher("/WEB-INF/view/error.jsp").forward(request, response);
+        }
     }
 }
