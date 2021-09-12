@@ -1,27 +1,40 @@
 package com.epam.rd.java.finalconf;
 
 import java.io.*;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
-    private String message;
 
-    public void init() {
-        message = "Hello World!";
+    public void init(ServletConfig servletConfig) {}
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        entry(req, resp);
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        entry(req, resp);
+    }
 
-
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
+    private void entry(HttpServletRequest request,
+                       HttpServletResponse response) throws ServletException, IOException {
+        String cPath = request.getContextPath();
+        String uPath = request.getRequestURI();
+        uPath = uPath.replace(cPath, "").replaceFirst("/", "");
+        if(uPath.isEmpty()) {
+            uPath = "index";
+        }
+//        String page = CommandResolver.getCommand(path).execute(request);
+//        if (page.contains("redirect:")) {
+//            String redirectStr = contextPath + page.replace("redirect:", "");
+//            response.sendRedirect(redirectStr);
+//        } else {
+//            request.getRequestDispatcher(page).forward(request, response);
+//        }
     }
 
     public void destroy() {
