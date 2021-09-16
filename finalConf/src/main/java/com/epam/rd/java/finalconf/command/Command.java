@@ -1,4 +1,4 @@
-package com.epam.rd.java.finalconf.servlets.commands;
+package com.epam.rd.java.finalconf.command;
 
 import javax.servlet.http.HttpServletRequest;
 

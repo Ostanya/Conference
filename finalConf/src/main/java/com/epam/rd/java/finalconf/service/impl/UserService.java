@@ -1,31 +1,74 @@
 package com.epam.rd.java.finalconf.service.impl;
 
+import com.epam.rd.java.finalconf.dao.UserDao;
+import com.epam.rd.java.finalconf.entity.Role;
 import com.epam.rd.java.finalconf.entity.User;
-import com.epam.rd.java.finalconf.service.UserServiceInterface;
+import com.epam.rd.java.finalconf.util.exeption.UserExistExept;
 
-import java.util.logging.Logger;
+import java.util.List;
+import java.util.Optional;
 
-public class UserService implements UserServiceInterface {
-    private static final Logger LOG = Logger.getLogger(UserService.class);
+public class UserService {
+    private final UserDao userDao;
+    private final ServiceSecurity securityService;
 
+    public UserService(UserDao userDao, ServiceSecurity securityService) {
+        this.userDao = userDao;
+        this.securityService = securityService;
+    }
 
-    @Override
+    public List<User> getAllUsers() {
+        //log.info("Handling find all users request");
+        return userDao.findAll();
+    }
+
+    public Optional<User> findByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
+
+    public List<User> findAll() {
+        return userDao.findAll();
+    }
+
+    public Optional<User> findById(long id) {
+        return userDao.findById(id);
+    }
+
+    public Optional<User> create(String firstName,
+                                 String lastName,
+                                 String email,
+                                 String password,
+                                 String role) throws UserExistExept {
+        String encodedPassword = securityService.encrypt(password);
+        return userDao.save(User.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .email(email)
+                .password(encodedPassword)
+                .role(Role.valueOf(role))
+                .build());
+    }
+
+    public Optional<User> update(String id, String firstName, String lastName,
+                                 String password, String role, String enabled) {
+        User user = User.builder()
+                .id(Long.parseLong(id))
+                .firstName(firstName)
+                .lastName(lastName)
+                .role(Role.valueOf(role))
+                .build();
+
+        if (!password.isEmpty()) {
+            user.setPassword(securityService.encrypt(password));
+        }
+        if (!enabled.isEmpty()) {
+            user.setEnabled(Boolean.parseBoolean(enabled));
+        }
+        return userDao.update(user);
+    }
+
     public boolean delete(long id) {
-        return false;
+        return userDao.deleteById(id);
     }
 
-    @Override
-    public boolean create(Object entity) {
-        return false;
-    }
-
-    @Override
-    public User login(String login) {
-        return null;
-    }
-
-    @Override
-    public long getCount(String count, String sql) {
-        return 0;
-    }
 }
