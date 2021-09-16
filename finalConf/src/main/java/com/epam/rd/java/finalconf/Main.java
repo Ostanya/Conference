@@ -1,12 +1,12 @@
 package com.epam.rd.java.finalconf;
+import com.epam.rd.java.finalconf.util.CommandDescriptor;
 
 import java.io.*;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 
-public class HelloServlet extends HttpServlet {
+public class Main extends HttpServlet {
 
     public void init(ServletConfig servletConfig) {}
 
@@ -22,19 +22,19 @@ public class HelloServlet extends HttpServlet {
 
     private void entry(HttpServletRequest request,
                        HttpServletResponse response) throws ServletException, IOException {
-        String cPath = request.getContextPath();
-        String uPath = request.getRequestURI();
-        uPath = uPath.replace(cPath, "").replaceFirst("/", "");
-        if(uPath.isEmpty()) {
-            uPath = "index";
+        String contextPath = request.getContextPath();
+        String path = request.getRequestURI();
+        path = path.replace(contextPath, "").replaceFirst("/", "");
+        if(path.isEmpty()) {
+            path = "index";
         }
-//        String page = CommandResolver.getCommand(path).execute(request);
-//        if (page.contains("redirect:")) {
-//            String redirectStr = contextPath + page.replace("redirect:", "");
-//            response.sendRedirect(redirectStr);
-//        } else {
-//            request.getRequestDispatcher(page).forward(request, response);
-//        }
+       String page = CommandDescriptor.getCommand(path).execute(request);
+       if (page.contains("redirect:")) {
+            String redirectStr = contextPath + page.replace("redirect:", "");
+           response.sendRedirect(redirectStr);
+       } else {
+           request.getRequestDispatcher(page).forward(request, response);
+       }
     }
 
     public void destroy() {

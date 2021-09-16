@@ -7,6 +7,7 @@
 <fmt:setBundle basename="property/messages"/>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,59 +29,36 @@
             <a href="?lang=en" class="btn btn-outline-success">English</a>
             <a href="?lang=uk" class="btn btn-outline-success">Українська</a>
         </div>
-
-        <%--        <c:if test="${requestScope.loggedUser.role == 'SPEAKER'}">--%>
-        <a class="btn btn-outline-success" href="${contextPath}/index/cabinet-entrance">
-<%--            <fmt:message key="speaker.cabinet.entrance">Cabinet</fmt:message></a>--%>
-        <%--        </c:if>--%>
-        <c:if test="${requestScope.loggedUser.role == 'MODERATOR'}">
-            <a class="btn btn-outline-success" href="${contextPath}/event/all">--%>
-<%--                <fmt:message key="event.list">Events list</fmt:message></a>--%>
-        </c:if>
         <form action="${contextPath}/logout" name="logout" method="POST">
+            <a class="btn btn-outline-success" href="${contextPath}/index"> <fmt:message
+                    key="back.button">Back</fmt:message></a>
             <button type="submit" class="btn btn-outline-success" name="logout" value="logout">
                 <fmt:message key="login.out">Log out</fmt:message>
             </button>
         </form>
     </div>
 </nav>
+<%--</div>--%>
 
-<div class="card text-center container  mt-5 w-50 shadow-lg">
-<%--    <div class="display-2 text-center w-100"><fmt:message key="event.list">Event list</fmt:message></div>--%>
-</div>
 
 <div class="container w-75 bg-light">
     <div class="row my-5">
         <div class="col py-3 shadow rounded">
-            <c:if test="${sessionScope.unique_participant_error == true}">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-<%--                    <h5 class="text-danger"><fmt:message key="participant.unique"/></h5>--%>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <a href="<c:remove var='unique_participant_error' scope="session"/>"
-                           style="color: #6c757d; text-decoration: none"><span aria-hidden="true">&times;</span></a>
-                    </button>
-                </div>
-            </c:if>
             <table class="table">
                 <thead>
                 <tr>
-<%--                    <th scope="col"><fmt:message key="event.crete.title">Title</fmt:message></th>--%>
-<%--                    <th scope="col"><fmt:message key="event.scheduled.date">ScheduledDate</fmt:message></th>--%>
-<%--                    <th scope="col"><fmt:message key="register.to.event">Register to event</fmt:message></th>--%>
+                    <th scope="col"><fmt:message key="event.crete.title">Title</fmt:message></th>
+                    <th scope="col"><fmt:message key="event.scheduled.date">ScheduledDate</fmt:message></th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="event" items="${requestScope.events}">
                     <tr>
-                        <td><span> ${event.title}</span></td>
-                        <td><span> ${event.scheduledDate}</span></td>
-                        <td>
-                            <a class="btn btn-outline-secondary"
-                               href="${contextPath}/register/event?id=${event.id}">
-<%--                                <fmt:message key="speaker.register">Register</fmt:message></a>--%>
-                        </td>
+                        <td><span>${event.title}</span></td>
+                        <td><span>${event.scheduledDate}</span></td>
                     </tr>
                 </c:forEach>
+
                 </tbody>
             </table>
         </div>
