@@ -1,60 +1,103 @@
 package com.epam.rd.java.finalconf.entity;
 
-public class Event {
-    private int id;
-    private String eventName;
-    private String topic;
-    private User user;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
-    private static int counter = 1;
-  //  private Date date;
+public class Event {
+    private long id;
+    private String title;
+    private LocalDateTime scheduledDate;
 
     public Event() {
-        id = counter++;
-    }
-    public Event(String eventName, String topic) {
-        id = counter++;
-        this.eventName = eventName;
-        this.topic = topic;
-       // this.user = user;
     }
 
+    public Event(long id, String title, LocalDateTime scheduledDate) {
+        this.id = id;
+        this.title = title;
+        this.scheduledDate = scheduledDate;
+    }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public String getEventName() {
-        return eventName;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
+    public String getTitle() {
+        return title;
     }
 
-    public String getTopic() {
-        return topic;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public LocalDateTime getScheduledDate() {
+        return scheduledDate;
     }
 
-   // public User getUser() {
-//        return user;
-//    }
+    public void setScheduledDate(LocalDateTime scheduledDate) {
+        this.scheduledDate = scheduledDate;
+    }
 
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return id == event.id &&
+                Objects.equals(title, event.title) &&
+                Objects.equals(scheduledDate, event.scheduledDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, scheduledDate);
+    }
 
     @Override
     public String toString() {
         return "Event{" +
                 "id=" + id +
-                ", eventName='" + eventName + '\'' +
-                ", topic='" + topic + '\'' +
-                ", user=" + user +
+                ", title='" + title + '\'' +
+                ", scheduledDate=" + scheduledDate +
                 '}';
     }
+
+    private Event(EventBuilder builder) {
+        this.id = builder.id;
+        this.title = builder.title;
+        this.scheduledDate = builder.scheduledDate;
+    }
+
+    public static EventBuilder builder() {
+        return new EventBuilder();
+    }
+
+    public static class EventBuilder {
+        private long id;
+        private String title;
+        private LocalDateTime scheduledDate;
+
+        public EventBuilder id(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public EventBuilder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public EventBuilder scheduledDate(LocalDateTime scheduledDate) {
+            this.scheduledDate = scheduledDate;
+            return this;
+        }
+
+        public Event build() {
+            return new Event(this);
+        }
+    }
+
 }
